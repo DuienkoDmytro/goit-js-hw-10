@@ -1,2 +1,0 @@
-const e=document.querySelector(".breed-select");fetch("https://api.thecatapi.com/v1/breeds?$key=live_pbdyt1nFjwVFPtWnsD7nqlKWqcs401pTCUNTAeFoD7x6SmvCsCPrgs9ardZqKAMM").then((e=>{if(console.log(e),!e.ok)throw new Error("примусово прокидаємо значення в кетч");return e.json()})).then((t=>{e.insertAdjacentHTML("beforeend",t.map((({name:e})=>`<option select.breed-select value="name">"${e}"</option>`)).join(""))})).catch((e=>console.error(e)));
-//# sourceMappingURL=index.64857013.js.map
