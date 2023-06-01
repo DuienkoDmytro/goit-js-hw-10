@@ -5,7 +5,7 @@ const BASE_URL = `https://api.thecatapi.com/v1/`;
     const API_KEY = `live_pbdyt1nFjwVFPtWnsD7nqlKWqcs401pTCUNTAeFoD7x6SmvCsCPrgs9ardZqKAMM`;
     const END_POINT = `images/search/`;
 const BREEDS_END_POINT = `breeds`;
-const breedId = `breed_ids`;
+let breedId = "${id}";
 
 
 
@@ -43,7 +43,7 @@ function createMarkup(arr) {
 
 
 function fetchCatByBreed(breedId) {
-  return fetch(`${BASE_URL}${END_POINT}${breedId}`)
+  return fetch(`${BASE_URL}${END_POINT}?breed_ids`)
     .then(resp => {
         console.log(resp)
         if (!resp.ok) {
@@ -53,4 +53,20 @@ function fetchCatByBreed(breedId) {
     })  
 }
 
-breed_select.addEventListener(`click`, fetchCatByBreed());
+
+breed_select.addEventListener(`change`, fetchCatByBreed()
+.then(data => { cat-info.insertAdjacentHTML("beforeend", createMarkupCat(data))})
+    
+.catch(err => console.error(err))
+);
+
+function createMarkupCat(arr) {
+    console.log(arr)
+    return arr.map(({ description, temperament, name, cfa_url }) =>
+    `<img src = "https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg" alt="${name}">
+<h2>"${name}"</h2>
+<p>"${description}"</p>
+<p>"${temperament}"</p>`).join(``)
+
+    
+}
