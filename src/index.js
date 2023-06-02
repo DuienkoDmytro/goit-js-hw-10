@@ -54,19 +54,24 @@ function fetchCatByBreed(breedId) {
 }
 
 const catBlock = document.querySelector(`.cat-info`);
-breed_select.addEventListener(`change`, fetchCatByBreed()
-.then(data => { catBlock.insertAdjacentHTML("beforeend", createMarkupCat(data))})
+breed_select.addEventListener(`change`, fetchCatByBreed(breedId));
+// .then(data => { catBlock.insertAdjacentHTML("beforeend", createMarkupCat(data))})
     
-.catch(err => console.error(err))
-);
+// .catch(err => console.error(err))
+// );
 
-function createMarkupCat(arr) {
+
+function createMarkupCat(event, arr) {
+    event.target.value = breedId;
     console.log(arr)
     return arr.map(({ description, temperament, name, cfa_url }) =>
     `<img src = "${cfa_url}" alt="${name}">
 <h2>"${name}"</h2>
-<p>"${description}"</p>
+<p>"${description}"</p>)
 <p>"${temperament}"</p>`).join(``)
-
-   
 }
+
+
+
+
+
