@@ -53,9 +53,9 @@ function fetchCatByBreed(breedId) {
     })  
 }
 
-
+const catBlock = document.querySelector(`.cat-info`);
 breed_select.addEventListener(`change`, fetchCatByBreed()
-.then(data => { cat-info.insertAdjacentHTML("beforeend", createMarkupCat(data))})
+.then(data => { catBlock.insertAdjacentHTML("beforeend", createMarkupCat(data))})
     
 .catch(err => console.error(err))
 );
@@ -63,7 +63,7 @@ breed_select.addEventListener(`change`, fetchCatByBreed()
 function createMarkupCat(arr) {
     console.log(arr)
     return arr.map(({ description, temperament, name, cfa_url }) =>
-    `<img src = "https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg" alt="${name}">
+    `<img src = "${cfa_url}" alt="${name}">
 <h2>"${name}"</h2>
 <p>"${description}"</p>
 <p>"${temperament}"</p>`).join(``)
