@@ -5,7 +5,7 @@ const BASE_URL = `https://api.thecatapi.com/v1/`;
     const API_KEY = `live_pbdyt1nFjwVFPtWnsD7nqlKWqcs401pTCUNTAeFoD7x6SmvCsCPrgs9ardZqKAMM`;
     const END_POINT = `images/search/`;
 const BREEDS_END_POINT = `breeds`;
-let breedId = "${id}";
+let breedId = "${reference_image_id}";
 
 
 
@@ -34,8 +34,8 @@ fetchbreed()
 
 function createMarkup(arr) {
     console.log(arr)
-    return arr.map(({ id, name }) =>
-        `<option select.breed-select value="${id}">"${name}"</option>`).join(``)
+    return arr.map(({reference_image_id, name} ) =>
+        `<option select.breed-select value="${reference_image_id}" >"${name}"</option>`).join(``)
     
 }
 
@@ -68,5 +68,5 @@ function createMarkupCat(arr) {
 <p>"${description}"</p>
 <p>"${temperament}"</p>`).join(``)
 
-    
+   
 }
