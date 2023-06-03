@@ -66,16 +66,17 @@ function searchCat(event) {
     fetchCatByBreed(catId).then(createMarkupCat);
 }
 
+
 function createMarkupCat(arr) {
+    const {breeds, url} = arr
     console.log(arr)
-    return arr.map(({ breeds, url }) =>
+    return arr(({ breeds, url })    
     `<img src = "${url}" alt="${breeds[0].name}">
 <h2>"${breeds[0].name}"</h2>
 <p>"${breeds[0].description}"</p>)
 <p>"${breeds[0].temperament}"</p>`).join(``)
 }
     
-fetchCatByBreed()
 
 catBlock.insertAdjacentHTML("beforeend", createMarkupCat());    
  
