@@ -3,7 +3,7 @@ const breed_select = document.querySelector(`.breed-select`);
 
 const BASE_URL = `https://api.thecatapi.com/v1/`;
     const API_KEY = `live_pbdyt1nFjwVFPtWnsD7nqlKWqcs401pTCUNTAeFoD7x6SmvCsCPrgs9ardZqKAMM`;
-    const END_POINT = `images/search/`;
+    const END_POINT = `images/`;
 const BREEDS_END_POINT = `breeds`;
 let breedId = "${reference_image_id}";
 
@@ -43,7 +43,8 @@ function createMarkup(arr) {
 
 
 function fetchCatByBreed(breedId) {
-  return fetch(`${BASE_URL}${END_POINT}?breed_ids`)
+    
+  return fetch(`${BASE_URL}${END_POINT}${breedId}`)
     .then(resp => {
         console.log(resp)
         if (!resp.ok) {
@@ -54,24 +55,30 @@ function fetchCatByBreed(breedId) {
 }
 
 const catBlock = document.querySelector(`.cat-info`);
-breed_select.addEventListener(`change`, fetchCatByBreed(breedId));
+breed_select.addEventListener(`change`, searchCat);
 // .then(data => { catBlock.insertAdjacentHTML("beforeend", createMarkupCat(data))})
     
 // .catch(err => console.error(err))
 // );
-
-
-function createMarkupCat(event, arr) {
-    event.target.value = breedId;
-    console.log(arr)
-    return arr.map(({ description, temperament, name, cfa_url }) =>
-    `<img src = "${cfa_url}" alt="${name}">
-<h2>"${name}"</h2>
-<p>"${description}"</p>)
-<p>"${temperament}"</p>`).join(``)
+function searchCat(event) {
+    catId = event.target.value
+    console.log(catId);
+    fetchCatByBreed(catId).then(createMarkupCat);
 }
 
+function createMarkupCat(arr) {
+    console.log(arr)
+    return arr.map(({ breeds, url }) =>
+    `<img src = "${url}" alt="${breeds[0].name}">
+<h2>"${breeds[0].name}"</h2>
+<p>"${breeds[0].description}"</p>)
+<p>"${breeds[0].temperament}"</p>`).join(``)
+}
+    
+fetchCatByBreed()
 
+catBlock.insertAdjacentHTML("beforeend", createMarkupCat());    
+ 
 
 
 
