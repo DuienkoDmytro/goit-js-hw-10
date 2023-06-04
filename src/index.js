@@ -70,16 +70,9 @@ function searchCat(event) {
 function createMarkupCat(arr) {
     const {breeds, url} = arr
     console.log(arr)
-    return arr(({ breeds, url })    
-    `<img src = "${url}" alt="${breeds[0].name}">
+   const cat = `<img src = "${url}" alt="${breeds[0].name}">
 <h2>"${breeds[0].name}"</h2>
-<p>"${breeds[0].description}"</p>)
-<p>"${breeds[0].temperament}"</p>`).join(``)
+<p>"${breeds[0].description}"</p>
+<p>"${breeds[0].temperament}"</p>`;
+catBlock.insertAdjacentHTML(`beforeend`, cat);    
 }
-    
-
-catBlock.insertAdjacentHTML("beforeend", createMarkupCat());    
- 
-
-
-
