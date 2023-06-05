@@ -21,7 +21,7 @@ function createMarkup(arr) {
 }
 
 function searchCat(event) {
-    catId = event.target.value
+    let catId = event.target.value
     console.log(catId);
     catBlock.innerHTML = "";
     loader.classList.remove("is-hidden");
